@@ -1,10 +1,5 @@
 import { ITodo } from './lists/models';
-
-const dummyItems = [
-  {id: 1, body: 'This is first Todo', status: 'undone'},
-  {id: 2, body: 'This is second Todo', status: 'undone'},
-  {id: 3, body: 'This is third Todo', status: 'undone'}
-];
+import { CLEAR_TODOS, ADD_TODO, DELETE_TODO, TOGGLE_TODO } from './lists/actions';
 
 export interface IAppState {
   todos: ITodo[];
@@ -12,10 +7,37 @@ export interface IAppState {
 }
 
 export const INITIAL_STATE: IAppState = {
-  todos: dummyItems,
+  todos: [],
   loading: false,
 };
 
-export function rootReducer(state, action) {
+export function rootReducer(state, action): IAppState {
+  switch (action.type) {
+    case CLEAR_TODOS:
+      return {
+        ...state,
+        todos: [],
+      };
+    case ADD_TODO:
+      return {
+        ...state,
+        todos: [...state.todos, action.payload],
+      };
+    case TOGGLE_TODO: {
+      return {
+        ...state,
+        todos: state.todos.map((cur) => {
+          cur.isComplete = (cur.id === action.payload.id) ? !cur.isComplete : cur.isComplete;
+          return cur;
+        }),
+      };
+    }
+    case DELETE_TODO: {
+      return {
+        ...state,
+        todos: state.todos.filter((cur) => cur.id !== action.payload.id ),
+      };
+    }
+  }
   return state;
 }

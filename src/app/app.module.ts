@@ -17,10 +17,11 @@ import { ListsComponent } from './lists/lists.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ListsComponent
+    ListsComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     NgReduxModule,
   ],
   providers: [],
