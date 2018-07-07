@@ -9,7 +9,7 @@
           <input type='text' class="task-input" autofocus placeholder ='input your todo'/>
         </div>    
       </li>
-      <li class='d-flex' *ngFor="let todo of todos">
+      <li class='d-flex' *ngFor="let todo of todos$ | async">
         <div class="task-checkbox">
           <input type="checkbox" value="">
         </div>

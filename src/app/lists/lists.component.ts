@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgRedux, select } from '@angular-redux/store';
+import { Observable } from 'rxjs';
+
 import { ITodo } from './models';
+import { IAppState } from '../store';
 
 @Component({
   selector: 'app-lists',
@@ -7,13 +11,9 @@ import { ITodo } from './models';
   styleUrls: ['./lists.component.css']
 })
 export class ListsComponent implements OnInit {
-  todos: ITodo[] = [
-    {id: 1, body: 'This is first Todo', status: 'undone'},
-    {id: 2, body: 'This is second Todo', status: 'undone'},
-    {id: 3, body: 'This is third Todo', status: 'undone'}
-  ];
+  @select() readonly todos$: Observable<ITodo[]>;
 
-  constructor() { }
+  constructor(private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
   }
