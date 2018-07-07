@@ -1,0 +1,26 @@
+<div class="card-body">
+  <div class="task-content">
+    <ul class="task-list list-unstyled">
+      <li class='d-flex'>
+        <div class="task-checkbox">
+          <input type="checkbox"  value="">
+        </div>
+        <div class="task-input">
+          <input type='text' class="task-input" autofocus placeholder ='input your todo'/>
+        </div>    
+      </li>
+      <li class='d-flex' *ngFor="let todo of todos">
+        <div class="task-checkbox">
+          <input type="checkbox" value="">
+        </div>
+        <div class="task-title">
+          <span class="">{{todo.body}}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="task-footer d-flex">
+    <button class="btn btn-success">ADD</button>
+    <button class="btn btn-primary ml-auto">CLEAR</button>
+  </div>
+</div>

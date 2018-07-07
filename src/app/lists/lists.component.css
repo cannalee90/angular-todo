@@ -1,0 +1,34 @@
+.task-content {
+  margin-bottom: 30px;
+}
+
+.task-checkbox {
+  margin-right: 30px;
+}
+
+.task-list > li {
+  padding: 10px 5px;
+  border-bottom: 1px dashed #eaeaea;
+}
+
+.card-body {
+  background-color: #fff;
+  color: #4d4d4d;
+}
+
+.task-footer:first-child {
+  margin-right: 10px;
+}
+
+.task-input {
+  border: 0;
+}
+
+.task-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ccc;
+  opacity: 1; /* Firefox */
+}
+
+.task-input:focus {
+  outline: none;
+}
