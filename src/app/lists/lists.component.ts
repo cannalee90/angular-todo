@@ -5,7 +5,7 @@ import { last } from 'rxjs/operators';
 
 import { ITodo } from './models';
 import { IAppState } from '../store';
-import { CLEAR_TODOS, TOGGLE_TODO, ADD_TODO, DELETE_TODO } from './actions';
+import { ListActions } from './actions';
 
 class Todo implements ITodo {
   constructor(public id: number, public body: string, public isComplete: boolean) {}
@@ -23,7 +23,10 @@ export class ListsComponent implements OnInit, OnDestroy {
   nextId = 0;
   private sub: any;
 
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private actions: ListActions
+  ) { }
 
   ngOnInit() {
     this.clearForm();
@@ -42,20 +45,20 @@ export class ListsComponent implements OnInit, OnDestroy {
   }
 
   clearTodos(): void {
-    this.ngRedux.dispatch({type: CLEAR_TODOS});
+    this.actions.clearTodos();
   }
 
   toggleTodo(todo: ITodo): void {
-    this.ngRedux.dispatch({type: TOGGLE_TODO, payload: todo});
+    this.actions.toggleTodo(todo);
   }
 
   deleteTodo(todo: ITodo): void {
-    this.ngRedux.dispatch({type: DELETE_TODO, payload: todo});
+    this.actions.deleteTodo(todo);
   }
 
   onSubmit(): void {
     this.model.id = this.nextId;
-    this.ngRedux.dispatch({type: ADD_TODO, payload: this.model});
+    this.actions.addTodo(this.model);
     this.clearForm();
   }
 }

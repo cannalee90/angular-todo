@@ -1,5 +1,5 @@
 import { ITodo } from './lists/models';
-import { CLEAR_TODOS, ADD_TODO, DELETE_TODO, TOGGLE_TODO } from './lists/actions';
+import { ListActions } from './lists/actions';
 
 export interface IAppState {
   todos: ITodo[];
@@ -13,17 +13,17 @@ export const INITIAL_STATE: IAppState = {
 
 export function rootReducer(state, action): IAppState {
   switch (action.type) {
-    case CLEAR_TODOS:
+    case ListActions.CLEAR_TODOS:
       return {
         ...state,
         todos: [],
       };
-    case ADD_TODO:
+    case ListActions.ADD_TODO:
       return {
         ...state,
         todos: [...state.todos, action.payload],
       };
-    case TOGGLE_TODO: {
+    case ListActions.TOGGLE_TODO: {
       return {
         ...state,
         todos: state.todos.map((cur) => {
@@ -32,7 +32,7 @@ export function rootReducer(state, action): IAppState {
         }),
       };
     }
-    case DELETE_TODO: {
+    case ListActions.DELETE_TODO: {
       return {
         ...state,
         todos: state.todos.filter((cur) => cur.id !== action.payload.id ),
